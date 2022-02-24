@@ -1,4 +1,4 @@
-# Fleet Vehicle Emulator & Demo
+# Fleet Vehicle Emulator & Battery Swapping Station Demo
 
 Simple Vehicle Emulator simulating a vehicle moving on a GPS path
 defined through a GPX file. 
