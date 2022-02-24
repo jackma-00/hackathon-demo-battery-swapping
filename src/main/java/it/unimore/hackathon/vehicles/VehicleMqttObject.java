@@ -22,9 +22,9 @@ import java.util.Map;
  * @project mqtt-demo-fleet-monitoring
  * @created 04/11/2020 - 16:01
  */
-public class VehicleMqttSmartObject {
+public class VehicleMqttObject {
 
-    private static final Logger logger = LoggerFactory.getLogger(VehicleMqttSmartObject.class);
+    private static final Logger logger = LoggerFactory.getLogger(VehicleMqttObject.class);
 
     private static final String BASIC_TOPIC = "fleet/vehicle";
 
@@ -44,7 +44,7 @@ public class VehicleMqttSmartObject {
 
     private Map<String, SmartObjectResource<?>> resourceMap;
 
-    public VehicleMqttSmartObject() {
+    public VehicleMqttObject() {
         this.mapper = new ObjectMapper();
     }
 

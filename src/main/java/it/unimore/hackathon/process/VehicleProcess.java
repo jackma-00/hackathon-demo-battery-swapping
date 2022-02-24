@@ -1,6 +1,6 @@
 package it.unimore.hackathon.process;
 
-import it.unimore.hackathon.vehicles.VehicleMqttSmartObject;
+import it.unimore.hackathon.vehicles.VehicleMqttObject;
 import it.unimore.hackathon.resource.BatterySensorResource;
 import it.unimore.hackathon.resource.GpsGpxSensorResource;
 import org.eclipse.paho.client.mqttv3.IMqttClient;
@@ -19,9 +19,9 @@ import java.util.UUID;
  * @project mqtt-demo-fleet-monitoring
  * @created 04/11/2020 - 16:15
  */
-public class VehicleSmartObjectProcess {
+public class VehicleProcess {
 
-    private static final Logger logger = LoggerFactory.getLogger(VehicleSmartObjectProcess.class);
+    private static final Logger logger = LoggerFactory.getLogger(VehicleProcess.class);
 
     private static String MQTT_BROKER_IP = "127.0.0.1";
 
@@ -52,15 +52,15 @@ public class VehicleSmartObjectProcess {
 
             logger.info("MQTT Client Connected ! Client Id: {}", vehicleId);
 
-            VehicleMqttSmartObject vehicleMqttSmartObject = new VehicleMqttSmartObject();
-            vehicleMqttSmartObject.init(vehicleId, mqttClient, new HashMap<>(){
+            VehicleMqttObject vehicleMqttObject = new VehicleMqttObject();
+            vehicleMqttObject.init(vehicleId, mqttClient, new HashMap<>(){
                 {
                     put("gps", new GpsGpxSensorResource());
                     put("battery", new BatterySensorResource());
                 }
             });
 
-            vehicleMqttSmartObject.start();
+            vehicleMqttObject.start();
 
         }catch (Exception e){
             e.printStackTrace();

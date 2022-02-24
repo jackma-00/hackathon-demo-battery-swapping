@@ -16,8 +16,11 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Traffic Monitoring for active fleet vehicles
@@ -32,11 +35,11 @@ public class SwappingStation1 {
 
     private final static String stationID = UUID.randomUUID().toString();
 
-    private final static double stationLatitude = 45.352161387;
+    private final static double stationLatitude = 45.427043885;
 
-    private final static double stationLongitude = 10.724724736;
+    private final static double stationLongitude = 10.700065596;
 
-    private final static double actionRange = 9500;
+    private final static double actionRange = 1000;
 
     private static final double ALARM_BATTERY_LEVEL = 20.0;
 
@@ -60,12 +63,15 @@ public class SwappingStation1 {
 
     private static boolean proximity = false; // flag to state the proximity of the vehicle with the station
 
+    private static List<String> vehicles; // List of the vehicles which need to be notified
 
     public static void main(String [ ] args) {
 
     	logger.info("MQTT Consumer Tester Started ...");
 
         try{
+
+            vehicles = new ArrayList<>();
 
             //Generate a random MQTT client ID using the UUID class
             String clientId = UUID.randomUUID().toString();
@@ -105,19 +111,24 @@ public class SwappingStation1 {
 
                     GpsLocationDescriptor gpsLocationDescriptor = telemetryMessageOptional.get().getDataValue();
 
-                    logger.info("Lat: {} - Long: {}", gpsLocationDescriptor.getLatitude(),
-                            gpsLocationDescriptor.getLongitude());
+                    String vehicleId = topic.replace("fleet/vehicle/", "").
+                            replace("/telemetry/gps", "");
+
+                    //logger.info("Vehicle {}. Position Lat: {} - Long: {}", vehicleId, gpsLocationDescriptor.getLatitude(),
+                            //gpsLocationDescriptor.getLongitude());
 
                     // computing distance
                     final Point start = WayPoint.of(stationLatitude, stationLongitude);
                     final Point end = WayPoint.of(gpsLocationDescriptor.getLatitude(), gpsLocationDescriptor.getLongitude());
                     final Length distance = Geoid.WGS84.distance(start, end);
-                    logger.info("Distance: {}", distance);
+                    logger.info("Vehicle {}. Distance from Station: {}", vehicleId, distance);
 
                     if (distance.doubleValue() < actionRange) {
                         proximity = true;
                     } else {
                         proximity = false;
+                        if (vehicles.contains(vehicleId))
+                            vehicles.remove(vehicleId); // removing vehicles out of range
                     }
 
                 }
@@ -132,10 +143,15 @@ public class SwappingStation1 {
 
                 if(telemetryMessageOptional.isPresent() && telemetryMessageOptional.get().getType().equals(BatterySensorResource.RESOURCE_TYPE)) {
 
-                    Double newBatteryLevel = telemetryMessageOptional.get().getDataValue();
-                    logger.info("New Battery Telemetry Data Received ! Battery Level: {}", newBatteryLevel);
+                    String vehicleId = topic.replace("fleet/vehicle/", "").
+                            replace("/telemetry/battery", "");
 
-                    if (newBatteryLevel < ALARM_BATTERY_LEVEL && proximity) {
+                    Double newBatteryLevel = telemetryMessageOptional.get().getDataValue();
+                    logger.info("Vehicle {}.                                 Battery Level: {}", vehicleId, newBatteryLevel);
+
+                    if (newBatteryLevel < ALARM_BATTERY_LEVEL && proximity && !vehicles.contains(vehicleId)) {
+                        // the last control allows to send the control notification only once to the target vehicle
+                        vehicles.add(vehicleId);
 
                         logger.info("BATTERY LEVEL ALARM DETECTED ! Sending Control Notification ...");
 

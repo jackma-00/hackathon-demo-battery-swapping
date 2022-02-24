@@ -1,0 +1,13 @@
+The Station will notify the vehicle of its presence, as well as availability WHEN:
+    - The charge of the battery is below 20%
+    - The distance from the station itself is below 1000.0 m
+
+Starting Point: Peschiera del Garda
+Arrival point: Mantua
+
+Demo Station location:
+    Latitude = 45.427043885
+    Longitude = 10.700065596
+
+Map:
+    https://www.google.com/maps/d/edit?mid=1gEtt-wWuwG3QoaTem7gGeO5kqrad3fVg&usp=sharing

@@ -17,9 +17,7 @@ public class BatterySensorResource extends SmartObjectResource<Double> {
 
     private static final Logger logger = LoggerFactory.getLogger(BatterySensorResource.class);
 
-    private static final double MIN_BATTERY_LEVEL = 20.0;
-
-    private static final double MAX_BATTERY_LEVEL = 30.0;
+    private static final double DEMO_STARTING_BATTERY_LEVEL = 25.0;
 
     private static final double MIN_BATTERY_LEVEL_CONSUMPTION = 0.1;
 
@@ -55,7 +53,7 @@ public class BatterySensorResource extends SmartObjectResource<Double> {
         try{
 
             this.random = new Random(System.currentTimeMillis());
-            this.updatedBatteryLevel = MIN_BATTERY_LEVEL + this.random.nextDouble()*(MAX_BATTERY_LEVEL - MIN_BATTERY_LEVEL);
+            this.updatedBatteryLevel = DEMO_STARTING_BATTERY_LEVEL;
 
             startPeriodicEventValueUpdateTask();
 
