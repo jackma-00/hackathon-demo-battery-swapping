@@ -11,11 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 15:03
- */
 public class GpsGpxSensorResource extends SmartObjectResource<GpsLocationDescriptor> {
 
     private static final Logger logger = LoggerFactory.getLogger(GpsGpxSensorResource.class);
@@ -24,7 +19,7 @@ public class GpsGpxSensorResource extends SmartObjectResource<GpsLocationDescrip
 
     private static final String GPX_FILE_NAME = "tracks/ciclabiledelmincio.gpx";
 
-    private static final long UPDATE_PERIOD = 1000; //5 Seconds
+    private static final long UPDATE_PERIOD = 500; //less than 1 s
 
     private static final long TASK_DELAY_TIME = 5000; //Seconds before starting the periodic update task
 

@@ -2,11 +2,6 @@ package it.unimore.hackathon.message;
 
 import java.util.Map;
 
-/**
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 15:58
- */
 public abstract class GenericMessage {
 
     private String type;

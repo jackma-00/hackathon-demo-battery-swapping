@@ -21,13 +21,6 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * Traffic Monitoring for active fleet vehicles
- *
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 19:40
- */
 public class SwappingStation2 {
 
     private final static Logger logger = LoggerFactory.getLogger(SwappingStation2.class);

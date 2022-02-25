@@ -17,11 +17,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-/**
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 16:01
- */
 public class VehicleMqttObject {
 
     private static final Logger logger = LoggerFactory.getLogger(VehicleMqttObject.class);

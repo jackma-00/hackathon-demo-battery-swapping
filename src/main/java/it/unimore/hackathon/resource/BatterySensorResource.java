@@ -8,22 +8,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
-/**
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 14:39
- */
 public class BatterySensorResource extends SmartObjectResource<Double> {
 
     private static final Logger logger = LoggerFactory.getLogger(BatterySensorResource.class);
 
-    private static final double DEMO_STARTING_BATTERY_LEVEL = 25.0;
+    private static final double DEMO_STARTING_BATTERY_LEVEL = 27.0;
 
     private static final double MIN_BATTERY_LEVEL_CONSUMPTION = 0.1;
 
     private static final double MAX_BATTERY_LEVEL_CONSUMPTION = 1.0;
 
-    private static final long UPDATE_PERIOD = 5000; //5 Seconds
+    private static final long UPDATE_PERIOD = 4000; //4 Seconds
 
     private static final long TASK_DELAY_TIME = 1000; //Seconds before starting the periodic update task
 

@@ -1,10 +1,5 @@
 package it.unimore.hackathon.utils;
 
-/**
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 20:02
- */
 public class GpsUtils {
 
     /**

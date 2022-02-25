@@ -1,10 +1,5 @@
 package it.unimore.hackathon.model;
 
-/**
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 15:03
- */
 public class GpsLocationDescriptor {
 
     public static final String FILE_LOCATION_PROVIDER = "location_provider_file";

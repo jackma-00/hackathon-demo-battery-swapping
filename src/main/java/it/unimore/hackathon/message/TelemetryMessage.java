@@ -2,11 +2,6 @@ package it.unimore.hackathon.message;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 15:56
- */
 public class TelemetryMessage<T> {
 
     @JsonProperty("timestamp")

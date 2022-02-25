@@ -22,13 +22,6 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-/**
- * Traffic Monitoring for active fleet vehicles
- *
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 19:40
- */
 public class SwappingStation1 {
 
     private final static Logger logger = LoggerFactory.getLogger(SwappingStation1.class);

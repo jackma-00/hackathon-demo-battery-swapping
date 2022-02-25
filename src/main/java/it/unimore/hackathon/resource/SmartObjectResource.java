@@ -6,11 +6,6 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Marco Picone, Ph.D. - picone.m@gmail.com
- * @project mqtt-demo-fleet-monitoring
- * @created 04/11/2020 - 14:33
- */
 public abstract class SmartObjectResource<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(SmartObjectResource.class);
